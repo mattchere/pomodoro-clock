@@ -25,10 +25,28 @@ $(document).ready(function() {
         $(".break-len").text(breaklen.toString());
     }
 
+    function changeTimer() {
+        if (pomo) {
+            pomo = false;
+            min = breaklen;
+            sec = 0;
+            $(".timer").css("background-color", "#44477F");
+        }
+        else {
+            pomo = true;
+            min = pomolen;
+            sec = 0;
+            $(".timer").css("background-color", "#CC293A")
+        }
+    }
+
     function decTimer() {
         if (sec == 0) {
             sec = 59;
             min--;
+            if (min < 0) {
+                changeTimer();
+            }
         }
         else {
             sec--;
@@ -49,7 +67,7 @@ $(document).ready(function() {
             }
         }
         
-    })
+    });
     $("#p-minus").click(function(event) {
         if (pause && pomolen > 1) {
             pomolen--;
@@ -60,7 +78,31 @@ $(document).ready(function() {
                 showTimer();
             }
         }
+    });
+    $("#b-plus").click(function(event) {
+        if (pause) {
+            breaklen++;
+            showBreakLen();
+            if (!pomo) {
+                min = pomolen;
+                sec = 0;
+                showTimer();
+            }
+        }
+        
     })
+    $("#b-minus").click(function(event) {
+        if (pause && breaklen > 1) {
+            breaklen--;
+            showBreakLen();
+            if (!pomo) {
+                min = pomolen;
+                sec = 0;
+                showTimer();
+            }
+        }
+    })
+
     $(".timer").click(function(event) {
         if (pause) {
             pause = false;
@@ -69,6 +111,7 @@ $(document).ready(function() {
             pause = true;
         }  
     });
+
     setInterval(function() {
         if (!pause){
             decTimer();
