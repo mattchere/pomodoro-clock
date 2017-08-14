@@ -84,7 +84,7 @@ $(document).ready(function() {
             breaklen++;
             showBreakLen();
             if (!pomo) {
-                min = pomolen;
+                min = breaklen;
                 sec = 0;
                 showTimer();
             }
@@ -96,7 +96,7 @@ $(document).ready(function() {
             breaklen--;
             showBreakLen();
             if (!pomo) {
-                min = pomolen;
+                min = breaklen;
                 sec = 0;
                 showTimer();
             }
