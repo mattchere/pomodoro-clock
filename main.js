@@ -5,6 +5,7 @@ $(document).ready(function() {
     var breaklen = 5;
     var pause = true;
     var pomo = true;
+    var audio = new Audio('transition.wav');
 
     function showTimer() {
         var strSec = sec.toString();
@@ -26,6 +27,7 @@ $(document).ready(function() {
     }
 
     function changeTimer() {
+        audio.play()
         if (pomo) {
             pomo = false;
             min = breaklen;
